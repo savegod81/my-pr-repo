@@ -35,7 +35,7 @@ jobs:
           REPO_URL=https://api.github.com/repos/bia-pain-bache/BPB-Worker-Panel/releases
           RESPONSE=$(curl -s --retry 3 -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" "$REPO_URL")
           TAG_NAME=$(echo "$RESPONSE" | jq -r '.[0].tag_name')
-          DOWNLOAD_URL=$(echo "$RESPONSE" | jq -r '.[0].assets[] | select(.name == "'"$TARGET_FILE"'") | .browser_download_url')
+          DOWNLOAD_URL=$(echo "$RESPONSE" | jq -r '.[0].assets[] | select(.name == "worker.js") | .browser_download_url')
 
           wget -O origin.js $DOWNLOAD_URL
       
